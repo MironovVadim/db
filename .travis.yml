@@ -2,7 +2,7 @@ language: python
 python: '3.6'
 sudo: false
 install:
-  - pip3 install ansible molecule testinfra
+  - pip3 install ansible molecule testinfra 'ansible[gce]'
   - ansible --version
 script:
   - molecule create
@@ -19,4 +19,5 @@ before_install:
   - tar xvf secrets.tar
   - mv google_compute_engine /home/travis/.ssh/
   - chmod 0600 /home/travis/.ssh/google_compute_engine
-
+after_script:
+  - molecule destroy
