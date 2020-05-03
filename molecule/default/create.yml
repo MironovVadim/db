@@ -15,7 +15,7 @@
   tasks:
     - name: Create molecule instance(s)
       gcp_compute_instance:
-        auth_kind: serviceaccount
+        auth_kind: machineaccount
 #        name: "{{ item.value.name }}"
 #        project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
 #        zone: "{{ item.value.zone }}"
