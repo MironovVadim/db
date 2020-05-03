@@ -16,17 +16,21 @@
     - name: Create molecule instance(s)
       gcp_compute_instance:
         auth_kind: serviceaccount
-        name: "{{ item.value.name }}"
+#        name: "{{ item.value.name }}"
+#        project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
+#        zone: "{{ item.value.zone }}"
+#        machine_type: "{{ item.value.machine_type }}"
+        name: instance-travis
         project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
-        zone: "{{ item.value.zone }}"
-        machine_type: "{{ item.value.machine_type }}"
+        zone: europe-west1-d
+        machine_type: f1-micro
         service_account_email: "{{ lookup('env', 'GCE_SERVICE_ACCOUNT_EMAIL') }}"
         disks:
           initialize_params:
-          source_image: "{{ item.value.image }}"
+          source_image: ubuntu-1604-xenial-v20170919
       #  credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
       register: server
-      loop: "{{ lookup('molecule_yml', platforms, wantlist=True) }}"
+#      loop: "{{ lookup('molecule_yml', platforms, wantlist=True) }}"
 
     # Mandatory configuration for Molecule to function.
 
