@@ -3,13 +3,14 @@ python: '3.6'
 sudo: false
 install:
   - pip3 install ansible molecule testinfra molecule-gce
-  - pip3 install
   - ansible --version
 script:
   - molecule create
   - molecule converge
   - molecule verify
 env:
+  matrix:
+    - GCE_CREDENTIALS_FILE="$(pwd)/credentials.json"
   global:
     - secure: ARKBYZPckdmyUW5fy5rWDspW/VXO21BWkFrp4NrpEZvH5mG24vnc2UwgLwj599s8hK2RoAsaMrzAMqqiEMqVlXVUXp/G9pVhubdR6fyHZWrdIa0EldKKPFdGBGMfwgUeJ2Q29wieilYVxHfXnQ6BU4IRWIWv0Zk3+wu5z4MARyU/tzj1EV19f6XPei5h38Tw+KKbeOIcfHdDlJ2kEZKIY36qwxXK4aGaUqkUoc1zOx1wANulm0oEIB2lTmOigBwJiLPV0aaTauIVXTjAFBstuvMUy1Z79XFK+OPwczgSKnRwzt1VPaJfLUScJJWVOWIs6ARK+vnoaHYBQLKorUkdRhI3ZuCsfosAn69VC37IT2vGE7f4JpHaEDB39wWZtx4P5rOlclRpGOAo5AyEDTebTMSn/4+/Ude2cC8vCRN/n7sttGTZgywBHkEWZxQM55ioinvOS8knDm9wGlDOW+NxoU/DDZaX8xT2elTpF96Oh36VofuExcQKLMP1I2kR/MitGTORg1vpfGb/AM/CM7a9QdOuOdhZQBcCfqI6cCt9Lxj/5oiD+wPndqUv/TvkVH3djhw1KIHnVE6ZSJ+8DfxEsO/ga1HIw75zWO8RD1uQ2wjYM6SP2SaNIYSPyGa/MHg5TY/MACF9knR6XgOvzL781/zXPqonzN/o/IJkXcEH3Qw=
     - secure: sZrX+fgXYgtXngQcbN7i+FNibQhRJxZwzE4+iv8g4YVLoDwvtlOU4XM0OZ1ZkVm97IX3ehdjAl2c+PNnUNYIbaSHt9gAv9iroslnxsYhlhLT4mBRlkLOnTnyeDVDgce5P6/ETzao/i3jKlxTp/RBWx6rM1PvGUMd6x/B3zdKFwprTyMa7KitEtDcCgc5y8923YCHaJlaZuhLUvjessDRRIVKLt9W5atjHg6n6zpifV5kEX/Z47xxmBlPT7hCmuwRZV7QMnODMTJPvWtxKKvb4RstujFRaiYdZbVWl1T9wsWh47BUcScK0Pvss5Z0lL0zk7xdZDC2YRwzqXpx2n6/qjmNA39RvIAcRHhgkLfgmIMjw8o242StX03EwV4wOXeFjNwTKx+6InLa00ouxPaUZlc8IYkyBoWDTc4+zzPFCC1Nm0/nwKu0XNWm0epWNCxoGD8WgO1M7AWqbnX552WMqfSqggNX6yx/UhmveKGfMnDM54Sm+o5U8TTKAeyShAmuRgYdW+pueLUzInajAjt0TsP6vyQBdWPyousTMHksgzzEjq82iS6+iKTAfPKSq6v8CLJhWe+CWEpQ9sGfpFzN9cPJ05z7hYhyq985bHbYgVIkssB+eN1z0Xto2gAr08fLo7wucFOJOsRgP2cjqyj9xTIeGct6Old+Hu/hSRuDGKg=
