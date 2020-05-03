@@ -17,7 +17,7 @@ env:
     - secure: NXTNnOQvZhQco829MakLbux2OMHWtudINKNRRWjQSjHknNv9kEQqzDNjxfbp/ed9HvNie+f/0NG7u2gHoj/lq9Znizj8FioOF7T8AW/OtA/pY0XLWNnJgH/XX+Y0+2TV/iFFY3xZbhUSiSoUwjuBWotwIh5K/TrOBfKtZRwmv9UBDVAMOJGoZYm8tCg7JLpv/FoFJMdP2OP6fsi76cWGzp2xp7H8Mro5ML/pt1K2GqGardiUiMDMZ3pYxeltbjr6v9V23CzRR6w0lqkwMZ/clKutjZFpY9KOOn92vJqnRH7JjbddCYbT+G4QXaDHR/8lEv18JVnw+41/oiIpETK7OlCnmj0ygR2SaLb03VUiVNSLoxu1Vru1p/46BHbqrsjZQfGSujaCtNXWC517I/ZIK4/6N4ggFBPuiMSQfqlKmPL4W9eObD7yHvkjadebO3V5RfrIbI0ewgvsBKhLsYaKYGLuYEFiPnC1fv7/vayNeTRsT5hdxVd0BGazGfTRbyovOQoZ5WSqZOOjM6vC7ugn3D+a2otDgBmlqeozt0PZQp0DOrWk2oTPHtQJC7xbcozLTJu4gK9bZnkfTiVkZW705V+U2dK7DuKTR38zZox486qF2Tuk5z2wLvqmbTl7yGCUEYqbM1zrNCOEjKa85z+DJ226D3JbMnDHkOGiDTCsSfw=
 before_install:
   - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv
-    -in secrets.tar.enc -out secrets.tar -d
+  - in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
   - mv google_compute_engine /home/travis/.ssh/
   - chmod 0600 /home/travis/.ssh/google_compute_engine
