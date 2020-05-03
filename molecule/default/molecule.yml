@@ -11,7 +11,7 @@
 #  name: ansible
 ---
 driver:
-  name: gce
+  name: gcp_compute_instance
 lint: yamllint
 platforms:
   - name: instance-travis
