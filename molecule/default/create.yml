@@ -13,15 +13,18 @@
     ssh_user: "{{ lookup('env', 'USER') }}"
     ssh_identity_file: "{{ lookup('env', 'HOME') }}/.ssh/google_compute_engine"
   tasks:
+    - shell: printenv
+      register: result
     - name: debug
-      command: printenv
+      debug:
+        var: result
     - name: Create molecule instance(s)
       gcp_compute_instance:
         auth_kind: serviceaccount
-#        name: "{{ item.value.name }}"
-#        project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
-#        zone: "{{ item.value.zone }}"
-#        machine_type: "{{ item.value.machine_type }}"
+        #        name: "{{ item.value.name }}"
+        #        project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
+        #        zone: "{{ item.value.zone }}"
+        #        machine_type: "{{ item.value.machine_type }}"
         name: instance-travis
         project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
         zone: europe-west1-d
@@ -32,7 +35,7 @@
               source_image: ubuntu-1604-xenial-v20170919
       #  credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
       register: server
-#      loop: "{{ lookup('molecule_yml', platforms, wantlist=True) }}"
+    #      loop: "{{ lookup('molecule_yml', platforms, wantlist=True) }}"
 
     # Mandatory configuration for Molecule to function.
 
