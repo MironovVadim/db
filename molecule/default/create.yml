@@ -16,17 +16,17 @@
     - name: Create molecule instance(s)
       gcp_compute_instance:
         auth_kind: serviceaccount
-        name: "{{ item.name }}"
+        name: "{{ item.value.name }}"
         project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
-        zone: "{{ item.zone }}"
-        machine_type: "{{ item.machine_type }}"
+        zone: "{{ item.value.zone }}"
+        machine_type: "{{ item.value.machine_type }}"
         service_account_email: "{{ lookup('env', 'GCE_SERVICE_ACCOUNT_EMAIL') }}"
         disks:
           initialize_params:
-          source_image: "{{ item.image }}"
+          source_image: "{{ item.value.image }}"
       #  credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
       register: server
-      loop: "{{ molecule_yml.platforms.0 }}"
+      loop: "{{ lookup('molecule_yml, platforms, wantlist=True) }}"
 
     # Mandatory configuration for Molecule to function.
 
