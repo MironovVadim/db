@@ -15,13 +15,16 @@
   tasks:
     - name: Create molecule instance(s)
       gcp_compute_instance:
-        instance_names: "{{ item.name }}"
+        auth_kind: serviceaccount
+        name: "{{ item.name }}"
+        project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
         zone: "{{ item.zone }}"
         machine_type: "{{ item.machine_type }}"
-        image: "{{ item.image }}"
         service_account_email: "{{ lookup('env', 'GCE_SERVICE_ACCOUNT_EMAIL') }}"
-        credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
-        project_id: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
+        disks:
+          initialize_params:
+          source_image: "{{ item.image }}"
+      #  credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
       register: server
       with_items: "{{ molecule_yml.platforms }}"
 
