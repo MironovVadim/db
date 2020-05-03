@@ -26,7 +26,7 @@
           source_image: "{{ item.value.image }}"
       #  credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
       register: server
-      loop: "{{ lookup('molecule_yml, platforms, wantlist=True) }}"
+      loop: "{{ lookup('molecule_yml', platforms, wantlist=True) }}"
 
     # Mandatory configuration for Molecule to function.
 
