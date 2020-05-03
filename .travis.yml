@@ -2,7 +2,7 @@ language: python
 python: '3.6'
 sudo: false
 install:
-- pip3 install ansible molecule testinfra molecule-gce
+- pip3 install ansible molecule testinfra molecule-gce google-auth
 - ansible --version
 script:
 - molecule create
