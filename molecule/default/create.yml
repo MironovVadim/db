@@ -26,7 +26,7 @@
           source_image: "{{ item.image }}"
       #  credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
       register: server
-      loop: "{{ molecule_yml.platforms | flatten(1) }}"
+      loop: "{{ molecule_yml.platforms.0 }}"
 
     # Mandatory configuration for Molecule to function.
 
