@@ -11,12 +11,12 @@
   tasks:
     - name: Destroy molecule instance(s)
       gcp_compute_instance:
-        instance_names: "{{ item.name }}"
+        name: "{{ item.name }}"
         state: absent
         zone: "{{ item.zone }}"
         service_account_email: "{{ lookup('env', 'GCE_SERVICE_ACCOUNT_EMAIL') }}"
-        credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
-        project_id: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
+#        credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
+        project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
       register: server
       with_items: "{{ molecule_yml.platforms }}"
 
