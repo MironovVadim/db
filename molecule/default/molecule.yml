@@ -18,6 +18,8 @@ platforms:
     zone: europe-west1-d
     machine_type: f1-micro
     image: ubuntu-1604-xenial-v20170919
+    identity_file: ${HOME}/.ssh/google_compute_engine
+    user: ${USER}
 #    provider_raw_config_args:
 #      - "customize [ 'modifyvm', :id, '--uartmode1', 'disconnected' ]"
 provisioner:
