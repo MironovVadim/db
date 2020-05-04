@@ -43,7 +43,6 @@
             auto_delete: yes
             initialize_params:
               source_image: "{{ item.image }}"
-#        credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
       register: server
       with_items: "{{ molecule_yml.platforms }}"
 
@@ -55,8 +54,8 @@
     - name: Populate instance config dict
       set_fact:
         instance_conf_dict: {
-          'instance': "{{ item.instance_data[0].name }}",
-          'address': "{{ item.instance_data[0].public_ip }}",
+          'instance': "{{ item.name }}",
+          'address': "{{ item.networkInterfaces[0].accessConfigs[0].natIP }}",
           'user': "{{ ssh_user }}",
           'port': "{{ ssh_port }}",
           'identity_file': "{{ ssh_identity_file }}", }
