@@ -4,8 +4,8 @@ sudo: false
 install:
 - pip3 install ansible molecule testinfra molecule-gce google-auth
 - ansible --version
-- export GCE_CREDENTIALS_FILE="$(pwd)/application_default_credentials.json"
-- export GCE_SERVICE_ACCOUNT_FILE='$(pwd)/service_account_file.json"
+- export GCE_CREDENTIALS_FILE=$(pwd)/application_default_credentials.json
+- export GCE_SERVICE_ACCOUNT_FILE=$(pwd)/service_account_file.json
 script:
 - molecule create
 - molecule converge
