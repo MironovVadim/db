@@ -47,6 +47,9 @@
       register: server
       with_items: "{{ molecule_yml.platforms }}"
 
+    - name: debug
+      debug:
+        var: server
     # Mandatory configuration for Molecule to function.
 
     - name: Populate instance config dict
