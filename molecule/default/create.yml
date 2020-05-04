@@ -25,10 +25,10 @@
         auth_kind: serviceaccount
         scopes:
           - https://www.googleapis.com/auth/compute
-        name: "{{ item.value.name }}"
+        name: "{{ item.name }}"
         project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
-        zone: "{{ item.value.zone }}"
-        machine_type: "{{ item.value.machine_type }}"
+        zone: "{{ item.zone }}"
+        machine_type: "{{ item.machine_type }}"
         service_account_file: "{{ lookup('env', 'GCE_SERVICE_ACCOUNT_FILE') }}"
         #        name: instance-travis
         #        project: terraform-project-272717
@@ -43,7 +43,7 @@
           - boot: yes
             auto_delete: yes
           - initialize_params:
-              source_image: "{{ item.value.image }}"
+              source_image: "{{ item.image }}"
 #        credentials_file: "{{ lookup('env', 'GCE_CREDENTIALS_FILE') }}"
       register: server
       with_items: "{{ molecule_yml.platforms }}"
