@@ -35,7 +35,7 @@
         zone: europe-west1-d
         machine_type: f1-micro
         #        service_account_file: "{{ lookup('env', 'GCE_SERVICE_ACCOUNT_FILE') }}"
-        service_account_file: ~/Downloads/terraform-project-272717-efadd6347988.json
+        service_account_file: ~/terraform-project-272717-efadd6347988.json
         network_interfaces:
           - access_configs:
               - name: "External NAT"
