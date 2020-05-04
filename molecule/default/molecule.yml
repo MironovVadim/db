@@ -17,12 +17,15 @@ platforms:
   - name: instance-travis
     zone: europe-west1-d
     machine_type: f1-micro
-    image: ubuntu-1604-xenial-v20170919
+    image: projects/ubuntu-os-cloud/global/images/family/ubuntu-1604-lts
 #    provider_raw_config_args:
 #      - "customize [ 'modifyvm', :id, '--uartmode1', 'disconnected' ]"
 provisioner:
   name: ansible
   lint: ansible-lint
+  playbooks:
+    create: create.yml
+    destroy: destroy.yml
 scenario:
   name: default
 verifier:
