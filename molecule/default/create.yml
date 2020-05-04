@@ -14,11 +14,11 @@
     ssh_identity_file: "{{ lookup('env', 'HOME') }}/.ssh/google_compute_engine"
 #    ssh_identity_file: "~/.ssh/google_compute_engine"
   tasks:
-    - shell: printenv
-      register: result
-    - name: debug
-      debug:
-        var: result
+#    - shell: printenv
+#      register: result
+#    - name: debug
+#      debug:
+#        var: result
     - name: Create molecule instance(s)
       gcp_compute_instance:
         auth_kind: serviceaccount

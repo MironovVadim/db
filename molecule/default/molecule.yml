@@ -22,6 +22,8 @@ platforms:
 #      - "customize [ 'modifyvm', :id, '--uartmode1', 'disconnected' ]"
 provisioner:
   name: ansible
+  options:
+    vvv: yes
   lint: ansible-lint
   playbooks:
     create: create.yml
