@@ -83,7 +83,7 @@
 
     - name: check file content
       command: "cat {{ molecule_instance_config }}"
-      refister: the_file
+      register: the_file
 
     - name: debug
       debug:
