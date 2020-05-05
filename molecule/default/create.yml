@@ -12,7 +12,6 @@
     ssh_port: 22
     ssh_user: "{{ lookup('env', 'USER') }}"
     ssh_identity_file: "{{ lookup('env', 'HOME') }}/.ssh/google_compute_engine"
-#    ssh_identity_file: "~/.ssh/google_compute_engine"
   tasks:
     - shell: printenv
       register: result
@@ -22,18 +21,11 @@
     - name: Create molecule instance(s)
       gcp_compute_instance:
         auth_kind: serviceaccount
-        scopes:
-          - https://www.googleapis.com/auth/compute
         name: "{{ item.name }}"
         project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
         zone: "{{ item.zone }}"
         machine_type: "{{ item.machine_type }}"
         service_account_file: "{{ lookup('env', 'GCE_SERVICE_ACCOUNT_FILE') }}"
-        #        name: instance-travis
-        #        project: terraform-project-272717
-        #        zone: europe-west1-d
-        #        machine_type: f1-micro
-        #        service_account_file: ~/Downloads/terraform-project-272717-efadd6347988.json
         network_interfaces:
           - access_configs:
               - name: "External NAT"
@@ -46,9 +38,6 @@
       register: server
       with_items: "{{ molecule_yml.platforms }}"
 
-    - name: debug
-      debug:
-        var: server
     # Mandatory configuration for Molecule to function.
 
     - name: Populate instance config dict
@@ -80,14 +69,6 @@
         content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
         dest: "{{ molecule_instance_config }}"
       when: server.changed | bool
-
-    - name: check file content
-      shell: "cat {{ molecule_instance_config }}"
-      register: the_file
-
-    - name: debug
-      debug:
-        var: instance_config_dict
 
     - name: Wait for SSH
       wait_for:

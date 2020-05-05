@@ -27,8 +27,8 @@ provisioner:
   lint: ansible-lint
   playbooks:
     create: ../default/create.yml
-    destroy: ../default/destroy.yml
     converge: ../default/converge.yml
+    destroy: ../default/destroy.yml
 scenario:
   name: default
 verifier:

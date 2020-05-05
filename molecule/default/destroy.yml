@@ -13,8 +13,6 @@
       gcp_compute_instance:
         state: absent
         auth_kind: serviceaccount
-        scopes:
-          - https://www.googleapis.com/auth/compute
         name: "{{ item.name }}"
         project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
         zone: "{{ item.zone }}"
