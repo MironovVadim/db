@@ -10,27 +10,27 @@
     molecule_yml: "{{ lookup('file', molecule_file) | from_yaml }}"
   tasks:
     - name: Destroy molecule instance(s)
-        gcp_compute_instance:
-          state: absent
-          auth_kind: serviceaccount
-          scopes:
-            - https://www.googleapis.com/auth/compute
-          name: "{{ item.name }}"
-          project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
-          zone: "{{ item.zone }}"
-          machine_type: "{{ item.machine_type }}"
-          service_account_file: "{{ lookup('env', 'GCE_SERVICE_ACCOUNT_FILE') }}"
-          network_interfaces:
-            - access_configs:
-                - name: "External NAT"
-                  type: "ONE_TO_ONE_NAT"
-          disks:
-            - boot: yes
-              auto_delete: yes
-              initialize_params:
-                source_image: "{{ item.image }}"
-        register: server
-        with_items: "{{ molecule_yml.platforms }}"
+      gcp_compute_instance:
+        state: absent
+        auth_kind: serviceaccount
+        scopes:
+          - https://www.googleapis.com/auth/compute
+        name: "{{ item.name }}"
+        project: "{{ lookup('env', 'GCE_PROJECT_ID') }}"
+        zone: "{{ item.zone }}"
+        machine_type: "{{ item.machine_type }}"
+        service_account_file: "{{ lookup('env', 'GCE_SERVICE_ACCOUNT_FILE') }}"
+        network_interfaces:
+          - access_configs:
+              - name: "External NAT"
+                type: "ONE_TO_ONE_NAT"
+        disks:
+          - boot: yes
+            auto_delete: yes
+            initialize_params:
+              source_image: "{{ item.image }}"
+      register: server
+      with_items: "{{ molecule_yml.platforms }}"
 
     # Mandatory configuration for Molecule to function.
 
