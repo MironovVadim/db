@@ -87,7 +87,7 @@
 
     - name: debug
       debug:
-        var: instance_conf
+        var: instance_config_dict
 
     - name: Wait for SSH
       wait_for:
