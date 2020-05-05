@@ -82,7 +82,7 @@
       when: server.changed | bool
 
     - name: check file content
-      command: "cat {{ molecule_instance_config }}"
+      shell: "cat {{ molecule_instance_config }}"
       register: the_file
 
     - name: debug
