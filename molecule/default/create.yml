@@ -68,6 +68,11 @@
         instance_conf: "{{ instance_config_dict.results | map(attribute='ansible_facts.instance_conf_dict') | list }}"
       when: server.changed | bool
 
+    - name: Create file if not exists
+      file:
+        path: "{{ molecule_instance_config }}"
+        state: touch
+
     - name: Dump instance config
       copy:
         # NOTE(retr0h): Workaround for Ansible 2.2.
