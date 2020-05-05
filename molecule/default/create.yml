@@ -81,6 +81,14 @@
         dest: "{{ molecule_instance_config }}"
       when: server.changed | bool
 
+    - name: check file content
+      command: "cat {{ molecule_instance_config }}"
+      refister: the_file
+
+    - name: debug
+      debug:
+        var: the_file
+
     - name: Wait for SSH
       wait_for:
         port: "{{ ssh_port }}"
